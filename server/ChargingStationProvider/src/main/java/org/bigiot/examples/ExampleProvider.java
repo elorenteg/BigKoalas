@@ -15,6 +15,7 @@
     import java.util.*;
 
     import org.bigiot.examples.barcelona.BarcelonaOffering;
+    import org.bigiot.examples.brussels.BrusselsOffering;
     import org.eclipse.bigiot.lib.ProviderSpark;
     import org.eclipse.bigiot.lib.exceptions.IncompleteOfferingDescriptionException;
     import org.eclipse.bigiot.lib.exceptions.NotRegisteredException;
@@ -46,8 +47,14 @@
             RegistrableOfferingDescription barcerlonaOfferingDescription = barcelonaOffering.createOfferingDescription();
             Endpoints barcerlonaOfferingEndpoint = barcelonaOffering.createEndpoint();
 
+            // Brussels offering
+            BrusselsOffering brusselsOffering = new BrusselsOffering();
+            RegistrableOfferingDescription brusselsOfferingDescription = brusselsOffering.createOfferingDescription();
+            Endpoints brusselsOfferingEndpoint = brusselsOffering.createEndpoint();
+
             // Register offerings
             provider.register(barcerlonaOfferingDescription, barcerlonaOfferingEndpoint);
+            provider.register(brusselsOfferingDescription, brusselsOfferingEndpoint);
 
             // Run until user presses the ENTER key
             System.out.println(">>>>>>  Terminate ExampleProvider by pressing ENTER  <<<<<<");
@@ -58,6 +65,7 @@
 
             // Deregister the Offering from the Marketplace
             provider.deregister(barcerlonaOfferingDescription);
+            provider.deregister(brusselsOfferingDescription);
 
             // Terminate the Provider instance
             provider.terminate();
