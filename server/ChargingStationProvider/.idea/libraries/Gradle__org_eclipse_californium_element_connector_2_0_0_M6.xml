@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.eclipse.californium:element-connector:2.0.0-M6">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.californium/element-connector/2.0.0-M6/f04382d190091e2a0c93f16aaa4655447eb344e5/element-connector-2.0.0-M6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.californium/element-connector/2.0.0-M6/4e543c4e03aec5fbfa39ff1c44cbb127213c5971/element-connector-2.0.0-M6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
