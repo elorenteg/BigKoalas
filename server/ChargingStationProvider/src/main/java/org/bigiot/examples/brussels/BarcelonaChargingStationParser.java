@@ -11,7 +11,7 @@ import java.net.URL;
 
 public class BarcelonaChargingStationParser {
     public BarcelonaAPIResults parseInfo() {
-        String google = "https://api.bsmsa.eu/ext/api/bsm/chargepoints/v1/chargepoints";
+        String google = "http://data-mobility.irisnet.be/geoserver/bm_equipment/wfs?service=wfs&version=1.1.0&request=GetFeature&typeName=bm_equipment:charging_stations&outputFormat=json&srsName=EPSG:4326";
         String charset = "UTF-8";
 
         URL url = null;
@@ -26,10 +26,10 @@ public class BarcelonaChargingStationParser {
             while ((intValueOfChar = reader.read()) != -1) {
                 targetString += (char) intValueOfChar;
             }
-            //System.out.println(targetString);
+            System.out.println(targetString);
 
             results = new Gson().fromJson(targetString, BarcelonaAPIResults.class);
-            System.out.println(results);
+            System.out.println(results.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {

@@ -57,44 +57,43 @@ public class BrusselsOffering {
 
             BarcelonaChargingStationParser chargingStationParser = new BarcelonaChargingStationParser();
             BarcelonaAPIResults barcelonaAPIResults = chargingStationParser.parseInfo();
-            List<BarcelonaAPIResults.Info> infos = barcelonaAPIResults.getResultParent().getChargepoint();
+            List<BarcelonaAPIResults.Feature> infos = barcelonaAPIResults.getFeatures();
 
             // Prepare the offering response as a JSONObject/Array - according to the Output Data defined in the Offering Description
             JSONArray jsonArray = new JSONArray();
             ArrayList<String> ids = new ArrayList<>();
-            for (BarcelonaAPIResults.Info info : infos) {
-                String infoid = info.getParkingID() + "-" + info.getVehicle();
-                if (!ids.contains(infoid)) {
-                    int count = 0;
-                    int countMenneke = 0;
-                    int countSchuko = 0;
-                    for (BarcelonaAPIResults.Info aux : infos) {
-                        if (aux.getParkingID().equals(info.getParkingID()) && aux.getVehicle().equals(info.getVehicle())) {
-                            count++;
-                            if (Boolean.parseBoolean(aux.getMenneke().toString())) countMenneke++;
-                            if (Boolean.parseBoolean(aux.getSchuko().toString())) countSchuko++;
-                        }
-                    }
+            for (BarcelonaAPIResults.Feature info : infos) {
+                String infoid = info.getId() + "-" + info.getProperties().getType();
 
-                    boolean hasMeneke = Boolean.parseBoolean(info.getMenneke().toString());
-                    boolean hasSchuko = Boolean.parseBoolean(info.getSchuko());
+                int countMenneke = 0;
+                int countSchuko = 0;
 
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("latitude", info.getLat());
-                    jsonObject.put("longitude", info.getLng());
-                    jsonObject.put("freeDispenserCount", count);
-                    jsonObject.put("mennekeCount", countMenneke);
-                    jsonObject.put("schukoCount", countSchuko);
-                    jsonObject.put("placeType", info.getVehicle().equals("0")? "veh" : "moto");
-                    jsonObject.put("plugType", (hasMeneke && !hasSchuko)? "meneke" : (!hasMeneke && hasSchuko)? "schuko": "both");
+                boolean hasMeneke = (info.getProperties().getPlug().equals("Type 2"));
+                boolean hasSchuko =(info.getProperties().getPlug().equals("Type 1"));
 
-                    ids.add(infoid);
-
-                    jsonArray.put(jsonObject);
+                if(hasMeneke){
+                    countMenneke = info.getProperties().getNumber();
                 }
-            }
+                else{
+                    countSchuko = info.getProperties().getNumber();
+                }
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("latitude", info.getGeometry().getCoordinates().get(0));
+                jsonObject.put("longitude", info.getGeometry().getCoordinates().get(1));
+                jsonObject.put("freeDispenserCount", info.getProperties().getNumber());
+                jsonObject.put("mennekeCount", countMenneke);
+                jsonObject.put("schukoCount", countSchuko);
+                jsonObject.put("placeType", "veh");
+                jsonObject.put("plugType", (hasMeneke && !hasSchuko)? "meneke" : "schuko");
 
-            // Send the response as JSON in the form: { [ { "value" : 0.XXX, "timestamp" : YYYYYYY } ] }
+                ids.add(infoid);
+
+                jsonArray.put(jsonObject);
+
+                }
+      //      }
+
+                    // Send the response as JSON in the form: { [ { "value" : 0.XXX, "timestamp" : YYYYYYY } ] }
             return BigIotHttpResponse.okay().withBody(jsonArray).asJsonType();
         }
     };

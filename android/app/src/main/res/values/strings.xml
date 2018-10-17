@@ -6,4 +6,5 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="access_token">pk.eyJ1IjoibGFxdWF5IiwiYSI6ImNqbmRjOWw4dTA2Y3IzcG5teDBraWcwcTUifQ.bc5JF7tVuiTKCK20CLhPzg</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">API_KEY</string>
 </resources>
