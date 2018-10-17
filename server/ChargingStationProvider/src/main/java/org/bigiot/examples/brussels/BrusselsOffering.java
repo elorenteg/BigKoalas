@@ -84,7 +84,7 @@ public class BrusselsOffering {
                 jsonObject.put("mennekeCount", countMenneke);
                 jsonObject.put("schukoCount", countSchuko);
                 jsonObject.put("placeType", "veh");
-                jsonObject.put("plugType", (hasMeneke && !hasSchuko)? "meneke" : (!hasMeneke && hasSchuko)? "schuko": "both");
+                jsonObject.put("plugType", (hasMeneke && !hasSchuko)? "meneke" : "schuko");
 
                 ids.add(infoid);
 
