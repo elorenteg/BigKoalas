@@ -12,15 +12,22 @@
 package android.bigiot.org.androidexampleconsumer;
 
 import android.bigiot.org.androidexampleconsumer.controller.BigIotController;
+import android.bigiot.org.androidexampleconsumer.model.RouteInfo;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import android.bigiot.org.androidexampleconsumer.controller.GoogleRouteController;
+
+public class MainActivity extends AppCompatActivity implements GoogleRouteController.RouteResolvedCallback{
+
+    private GoogleRouteController.RouteResolvedCallback routeResolvedCallback;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -63,12 +70,24 @@ public class MainActivity extends AppCompatActivity {
 
         navigation.setSelectedItemId(R.id.navigation_home);
 
+        routeResolvedCallback = this;
+
         try {
             BigIotController.getInstance(this).accessOffering();
             BigIotController.getInstance(this).accessOffering();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        Location originLocation = new Location("pp");
+        originLocation.setLatitude(41.1);
+        originLocation.setLongitude(2.1);
+
+        Location destinationLocation = new Location("pp");
+        destinationLocation.setLatitude(41.5);
+        destinationLocation.setLongitude(2.13);
+
+        GoogleRouteController.routeRequest(this, originLocation, destinationLocation, this);
     }
 
     @Override
@@ -91,5 +110,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRouteResolved(RouteInfo distanceProperties) {
+        Log.e("TAG", distanceProperties.toString());
+        Log.e("TAG", distanceProperties.getDistance() + "");
+        Log.e("TAG", distanceProperties.getTime() + "");
     }
 }
