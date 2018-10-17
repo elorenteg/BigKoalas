@@ -12,11 +12,15 @@
     package org.bigiot.examples;
 
     import java.io.IOException;
-    import java.util.Date;
-    import java.util.Map;
-    import java.util.Random;
-    import java.util.Scanner;
+    import java.io.InputStreamReader;
+    import java.io.Reader;
+    import java.io.UnsupportedEncodingException;
+    import java.net.MalformedURLException;
+    import java.net.URL;
+    import java.net.URLEncoder;
+    import java.util.*;
 
+    import com.google.gson.*;
     import org.eclipse.bigiot.lib.ProviderSpark;
     import org.eclipse.bigiot.lib.exceptions.IncompleteOfferingDescriptionException;
     import org.eclipse.bigiot.lib.exceptions.NotRegisteredException;
@@ -32,7 +36,10 @@
     import org.eclipse.bigiot.lib.offering.OfferingDescription;
     import org.eclipse.bigiot.lib.offering.RegistrableOfferingDescription;
     import org.eclipse.bigiot.lib.serverwrapper.BigIotHttpResponse;
+    import org.eclipse.jetty.util.log.Log;
     import org.joda.time.DateTime;
+
+    import org.json.JSONArray;
     import org.json.JSONObject;
 
     /**
@@ -42,31 +49,40 @@
 
         private static Random rand = new Random();
 
+
+
         private static AccessRequestHandler accessCallback = new AccessRequestHandler() {
             @Override
-            public BigIotHttpResponse processRequestHandler (
-                   OfferingDescription offeringDescription, Map<String,Object> inputData, String subscriberId, String consumerInfo) {
+            public BigIotHttpResponse processRequestHandler (OfferingDescription offeringDescription, Map<String,Object> inputData, String subscriberId, String consumerInfo) {
 
-                /*
-                double longitude = 41.0;
-                if (inputData.containsKey("longitude"))
-                    longitude = Double.parseDouble((String) inputData.get("longitude"));
 
-                double latitude = 9.0;
-                if (inputData.containsKey("latitude"))
-                    latitude = Double.parseDouble((String) inputData.get("latitude"));
-
-                */
+                ChargingStationParser chargingStationParser = new ChargingStationParser();
+                GoogleResults googleResults = chargingStationParser.parseInfo();
+                List<GoogleResults.Info> infos = googleResults.getResultParent().getChargepoint();
 
                 // Prepare the offering response as a JSONObject/Array - according to the Output Data defined in the Offering Description
-                JSONObject number = new JSONObject();
-                number.put("latitude", rand.nextFloat());
-                number.put("longitude", rand.nextFloat());
-                number.put("freeDispenserCount", rand.nextFloat());
-                number.put("plugTypes", rand.nextFloat());
+                JSONArray jsonArray = new JSONArray();
+                ArrayList<String> ids = new ArrayList<>();
+                for (GoogleResults.Info info : infos) {
+                    if (!ids.contains(info.getParkingID())) {
+                        int count = 0;
+                        for (GoogleResults.Info aux : infos) {
+                            if (aux.getParkingID().equals(info.getParkingID())) count++;
+                        }
+                        JSONObject jsonObject = new JSONObject();
+                        jsonObject.put("latitude", info.getLat());
+                        jsonObject.put("longitude", info.getLng());
+                        jsonObject.put("freeDispenserCount", count);
+                        jsonObject.put("plugTypes", rand.nextFloat());
+
+                        ids.add(info.getParkingID());
+
+                        jsonArray.put(jsonObject);
+                    }
+                }
 
                 // Send the response as JSON in the form: { [ { "value" : 0.XXX, "timestamp" : YYYYYYY } ] }
-                return BigIotHttpResponse.okay().withBody(number).asJsonType();
+                return BigIotHttpResponse.okay().withBody(jsonArray).asJsonType();
             }
         };
 
