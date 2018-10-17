@@ -28,11 +28,11 @@ public class BarcelonaOffering {
                         .addInputData("radius", "schema:geoRadius", BigIotTypes.ValueType.NUMBER)
                         .addOutputData("latitude", "schema:latitude", BigIotTypes.ValueType.NUMBER)
                         .addOutputData("longitude", "schema:longitude", BigIotTypes.ValueType.NUMBER)
-                        .addOutputData("freeDispenserCount", "mobility:chargingNumberOfVacantStations", BigIotTypes.ValueType.NUMBER)
-                        .addOutputData("countMenneke", "mobility:chargingNumberOfVacantStations", BigIotTypes.ValueType.NUMBER)
-                        .addOutputData("countSchuko", "mobility:chargingNumberOfVacantStations", BigIotTypes.ValueType.NUMBER)
-                        .addOutputData("placeType", "mobility:chargingStationConnectorType", BigIotTypes.ValueType.TEXT)
-                        .addOutputData("plugType", "mobility:chargingStationConnectorType", BigIotTypes.ValueType.TEXT)
+                        .addOutputData("address", "schema:streetAddress", BigIotTypes.ValueType.TEXT)
+                        .addOutputData("availableSpots", "mobility:chargingNumberOfVacantStations", BigIotTypes.ValueType.NUMBER)
+                        .addOutputData("availableMennekeSpots", "mobility:chargingNumberOfVacantStations", BigIotTypes.ValueType.NUMBER)
+                        .addOutputData("availableSchukoSpots", "mobility:chargingNumberOfVacantStations", BigIotTypes.ValueType.NUMBER)
+                        .addOutputData("spotType", "mobility:chargingStationConnectorType", BigIotTypes.ValueType.TEXT)
                         //.inRegion(BoundingBox.create(Location.create(42.1, 9.0), Location.create(43.2, 10.0)))
                         //.withTimePeriod(new DateTime(2017, 1, 1, 0, 0, 0), new DateTime())
                         .withPrice(Price.Euros.amount(0.001))
@@ -82,11 +82,12 @@ public class BarcelonaOffering {
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put("latitude", info.getLat());
                     jsonObject.put("longitude", info.getLng());
-                    jsonObject.put("freeDispenserCount", count);
-                    jsonObject.put("mennekeCount", countMenneke);
-                    jsonObject.put("schukoCount", countSchuko);
-                    jsonObject.put("placeType", info.getVehicle().equals("0")? "veh" : "moto");
-                    jsonObject.put("plugType", (hasMeneke && !hasSchuko)? "meneke" : (!hasMeneke && hasSchuko)? "schuko": "both");
+                    jsonObject.put("address", info.getAddress());
+                    jsonObject.put("availableSpots", count);
+                    jsonObject.put("availableMennekeSpots", countMenneke);
+                    jsonObject.put("availableSchukoSpots", countSchuko);
+                    jsonObject.put("spotType", info.getVehicle().equals("0")? "veh" : "moto");
+                    //jsonObject.put("plugType", (hasMeneke && !hasSchuko)? "meneke" : (!hasMeneke && hasSchuko)? "schuko": "both");
 
                     ids.add(infoid);
 
