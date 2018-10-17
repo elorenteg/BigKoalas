@@ -1,8 +1,8 @@
-package org.bigiot.examples;
+package org.bigiot.examples.barcelona;
 
 import java.util.List;
 
-public class GoogleResults {
+public class BarcelonaAPIResults {
 
     private Result result;
 
