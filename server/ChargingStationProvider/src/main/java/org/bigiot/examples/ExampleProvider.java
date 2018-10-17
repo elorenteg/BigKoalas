@@ -69,8 +69,6 @@
 
             // Terminate the Provider instance
             provider.terminate();
-
         }
-
     }
 
