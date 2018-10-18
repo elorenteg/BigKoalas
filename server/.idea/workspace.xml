@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="46cca51c-280c-4b21-a759-5010cfc23739" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/ChargingStationProvider/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__ch_qos_logback_logback_classic_1_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__ch_qos_logback_logback_core_1_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_annotations_2_9_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_9_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_databind_2_9_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__com_fasterxml_jackson_dataformat_jackson_dataformat_xml_2_9_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__com_fasterxml_jackson_datatype_jackson_datatype_joda_2_9_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__com_fasterxml_jackson_module_jackson_module_jaxb_annotations_2_9_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__com_fasterxml_woodstox_woodstox_core_5_0_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__com_sparkjava_spark_core_2_7_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_3_9_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__com_squareup_okio_okio_1_13_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__commons_codec_commons_codec_1_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__commons_logging_commons_logging_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__io_jsonwebtoken_jjwt_0_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__javax_servlet_javax_servlet_api_3_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__joda_time_joda_time_2_9_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__junit_junit_4_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_apache_commons_commons_math3_3_6_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_apache_httpcomponents_httpasyncclient_4_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_5_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_4_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_nio_4_4_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_codehaus_woodstox_stax2_api_3_1_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_bigiot_lib_bigiot_lib_advanced_0_11_M2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_bigiot_lib_bigiot_lib_core_0_11_M2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_bigiot_lib_bigiot_lib_embeddedspark_0_11_M2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_californium_californium_core_2_0_0_M6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_californium_element_connector_2_0_0_M6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_jetty_jetty_client_9_4_6_v20170531.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_jetty_jetty_http_9_4_6_v20170531.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_jetty_jetty_io_9_4_6_v20170531.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_jetty_jetty_security_9_4_6_v20170531.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_jetty_jetty_server_9_4_6_v20170531.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_jetty_jetty_servlet_9_4_6_v20170531.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_jetty_jetty_util_9_4_6_v20170531.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_jetty_jetty_webapp_9_4_6_v20170531.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_jetty_jetty_xml_9_4_6_v20170531.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_jetty_websocket_websocket_api_9_4_6_v20170531.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_jetty_websocket_websocket_client_9_4_6_v20170531.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_jetty_websocket_websocket_common_9_4_6_v20170531.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_jetty_websocket_websocket_server_9_4_6_v20170531.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_eclipse_jetty_websocket_websocket_servlet_9_4_6_v20170531.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_json_json_20160810.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_slf4j_jul_to_slf4j_1_7_25.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/libraries/Gradle__org_slf4j_slf4j_api_1_7_25.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChargingStationProvider/.idea/workspace.xml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="1831008574">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="14" selection-start-column="14" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Makefile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="23" selection-end-line="11" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ChargingStationProvider/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="558">
+              <caret line="83" column="47" selection-start-line="83" selection-start-column="47" selection-end-line="83" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Dockerfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="15" selection-start-column="15" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ChargingStationProvider/example.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1148" />
+    <option name="y" value="198" />
+    <option name="width" value="772" />
+    <option name="height" value="790" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="ChargingStationProvider" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9f25d494-1a5b-4a4f-be66-0cbfba0f99e1" name="Default Changelist" comment="" />
+      <created>1539813283637</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1539813283637</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Fix docker">
+      <created>1539850063730</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1539850063730</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Remove lines in properties">
+      <created>1539850729867</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1539850729867</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Update docker cnfig">
+      <created>1539851876326</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1539851876326</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Update docker cnfig">
+      <created>1539852143231</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1539852143231</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Update makefile and gitignore">
+      <created>1539853749261</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1539853749261</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Update gitignore and remove unused idea files">
+      <created>1539853882109</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1539853882109</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="30" width="1920" height="1050" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19768055" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" weight="0.32934782" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32934782" />
+      <window_info anchor="bottom" id="Python Console" order="11" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fix docker" />
+    <MESSAGE value="Remove lines in properties" />
+    <MESSAGE value="Update docker cnfig" />
+    <MESSAGE value="Update makefile and gitignore" />
+    <MESSAGE value="Update gitignore and remove unused idea files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update gitignore and remove unused idea files" />
+  </component>
+</project>
