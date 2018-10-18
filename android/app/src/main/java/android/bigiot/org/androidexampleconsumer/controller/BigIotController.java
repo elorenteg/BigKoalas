@@ -61,7 +61,6 @@ public class BigIotController implements IDiscoveryHandler, IResponseHandler, IS
                     //.addOutputData(new RDFType("schema:longitude"), ValueType.NUMBER)
                     //.addOutputData(new RDFType("schema:latitude"), ValueType.NUMBER)
                     //.addOutputData(new RDFType("schema:geoRadius"), ValueType.NUMBER)
-                    //.inRegion("Berlin")
                     //.withPricingModel(BigIotTypes.PricingModel.PER_ACCESS);
                     //.withMaxPrice(Price.Euros.amount(1.0))
                     //.withLicenseType(BigIotTypes.LicenseType.OPEN_DATA_LICENSE);
@@ -88,7 +87,8 @@ public class BigIotController implements IDiscoveryHandler, IResponseHandler, IS
             for (int i = 0; i < offeringDescriptions.size(); ++i) {
                 OfferingDescription selectedOfferingDescription = offeringDescriptions.get(i);
                 Log.e(TAG, selectedOfferingDescription.getId());
-                if (selectedOfferingDescription.getId().equals("Thingful-Thingful-torino_parking_total_capacity")) {
+                if (selectedOfferingDescription.getId().equals("BigKoalas-NewChargingStationProvider-BarcelonaChargingStations") ||
+                        selectedOfferingDescription.getId().equals("BigKoalas-NewChargingStationProvider-BrusselsChargingStations")) {
                     consumer.subscribeByTask(selectedOfferingDescription, this);
                     Toast.makeText(context, "Offering found: " + selectedOfferingDescription.getId(), Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "Offering found: " + selectedOfferingDescription.getId());
