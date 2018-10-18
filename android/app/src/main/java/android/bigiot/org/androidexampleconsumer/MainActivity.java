@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements GoogleRouteContro
 
         try {
             BigIotController.getInstance(this).accessOffering();
-            BigIotController.getInstance(this).accessOffering();
+            //BigIotController.getInstance(this).accessOffering();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements GoogleRouteContro
         destinationLocation.setLatitude(41.5);
         destinationLocation.setLongitude(2.13);
 
-        GoogleRouteController.routeRequest(this, originLocation, destinationLocation, this);
+        //GoogleRouteController.routeRequest(this, originLocation, destinationLocation, this);
     }
 
     @Override
