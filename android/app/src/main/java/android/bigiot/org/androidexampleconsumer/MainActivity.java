@@ -11,7 +11,7 @@
  */
 package android.bigiot.org.androidexampleconsumer;
 
-import android.bigiot.org.androidexampleconsumer.controller.BigIotController;
+import android.bigiot.org.androidexampleconsumer.controller.GoogleRouteController;
 import android.bigiot.org.androidexampleconsumer.model.RouteInfo;
 import android.location.Location;
 import android.os.Bundle;
@@ -22,8 +22,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import android.bigiot.org.androidexampleconsumer.controller.GoogleRouteController;
 
 public class MainActivity extends AppCompatActivity implements GoogleRouteController.RouteResolvedCallback{
 
@@ -71,13 +69,6 @@ public class MainActivity extends AppCompatActivity implements GoogleRouteContro
         navigation.setSelectedItemId(R.id.navigation_home);
 
         routeResolvedCallback = this;
-
-        try {
-            BigIotController.getInstance(this).accessOffering();
-            //BigIotController.getInstance(this).accessOffering();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         Location originLocation = new Location("pp");
         originLocation.setLatitude(41.1);

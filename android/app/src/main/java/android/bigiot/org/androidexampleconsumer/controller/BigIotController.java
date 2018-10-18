@@ -10,10 +10,6 @@ import org.eclipse.bigiot.lib.android.IDiscoveryHandler;
 import org.eclipse.bigiot.lib.android.IResponseHandler;
 import org.eclipse.bigiot.lib.android.ISubscriptionHandler;
 import org.eclipse.bigiot.lib.exceptions.IncompleteOfferingQueryException;
-import org.eclipse.bigiot.lib.model.BigIotTypes;
-import org.eclipse.bigiot.lib.model.Price;
-import org.eclipse.bigiot.lib.model.RDFType;
-import org.eclipse.bigiot.lib.model.ValueType;
 import org.eclipse.bigiot.lib.offering.AccessParameters;
 import org.eclipse.bigiot.lib.offering.AccessResponse;
 import org.eclipse.bigiot.lib.offering.OfferingCore;
@@ -32,6 +28,7 @@ public class BigIotController implements IDiscoveryHandler, IResponseHandler, IS
     private Context context;
     private Consumer consumer = null;
     private OfferingCore offering = null;
+    private OnAccessResponseCallback callback;
 
     private BigIotController(Context ctx) {
         this.context = ctx;
@@ -52,18 +49,19 @@ public class BigIotController implements IDiscoveryHandler, IResponseHandler, IS
         }
     }
 
-    public void accessOffering() throws Exception {
+    public void accessOffering(OnAccessResponseCallback callback) throws Exception {
         try {
+            this.callback = callback;
             Random r = new Random();
             int i1 = r.nextInt(100000);
             OfferingQuery query = Consumer.createOfferingQuery("CHARGING_ID" + i1)
                     .withCategory("urn:big-iot:ChargingStationCategory");
-                    //.addOutputData(new RDFType("schema:longitude"), ValueType.NUMBER)
-                    //.addOutputData(new RDFType("schema:latitude"), ValueType.NUMBER)
-                    //.addOutputData(new RDFType("schema:geoRadius"), ValueType.NUMBER)
-                    //.withPricingModel(BigIotTypes.PricingModel.PER_ACCESS);
-                    //.withMaxPrice(Price.Euros.amount(1.0))
-                    //.withLicenseType(BigIotTypes.LicenseType.OPEN_DATA_LICENSE);
+            //.addOutputData(new RDFType("schema:longitude"), ValueType.NUMBER)
+            //.addOutputData(new RDFType("schema:latitude"), ValueType.NUMBER)
+            //.addOutputData(new RDFType("schema:geoRadius"), ValueType.NUMBER)
+            //.withPricingModel(BigIotTypes.PricingModel.PER_ACCESS);
+            //.withMaxPrice(Price.Euros.amount(1.0))
+            //.withLicenseType(BigIotTypes.LicenseType.OPEN_DATA_LICENSE);
 
             consumer.discoverByTask(query, this);
         } catch (IncompleteOfferingQueryException e) {
@@ -94,8 +92,7 @@ public class BigIotController implements IDiscoveryHandler, IResponseHandler, IS
                     Log.e(TAG, "Offering found: " + selectedOfferingDescription.getId());
                 }
             }
-        }
-        else {
+        } else {
             Log.e(TAG, "No Offerings");
             Toast.makeText(context, "No Offerings found", Toast.LENGTH_LONG).show();
         }
@@ -119,7 +116,13 @@ public class BigIotController implements IDiscoveryHandler, IResponseHandler, IS
     @Override
     public void onAccessResponse(OfferingCore offeringCore, AccessResponse accessResponse) {
         if (accessResponse != null) {
-            Log.e(TAG, "Access response " + accessResponse.getBody());
+            if (callback != null) {
+                callback.onAccessResponse(accessResponse.getBody());
+            }
         }
+    }
+
+    public interface OnAccessResponseCallback {
+        void onAccessResponse(String response);
     }
 }

@@ -1,14 +1,19 @@
 package android.bigiot.org.androidexampleconsumer;
 
+import android.bigiot.org.androidexampleconsumer.Utils.Utils;
+import android.bigiot.org.androidexampleconsumer.controller.BigIotController;
+import android.bigiot.org.androidexampleconsumer.model.ChargeStation;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
@@ -17,10 +22,19 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 
-public class HomeFragment extends Fragment {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+public class HomeFragment extends Fragment implements BigIotController.OnAccessResponseCallback {
     public static final String TAG = HomeFragment.class.getSimpleName();
     private View rootView;
     private MapView mapView;
+    private MapboxMap mMapboxMap;
+
+    private ArrayList<ChargeStation> chargeStations;
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -33,8 +47,16 @@ public class HomeFragment extends Fragment {
         setUpElements();
         setUpListeners();
 
+        chargeStations = new ArrayList<>();
+
         Mapbox.getInstance(getActivity(), getString(R.string.access_token));
         mapView = rootView.findViewById(R.id.mapView);
+
+        try {
+            BigIotController.getInstance(getActivity()).accessOffering(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return rootView;
     }
@@ -47,20 +69,15 @@ public class HomeFragment extends Fragment {
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(MapboxMap mapboxMap) {
-                // One way to add a marker view
-                mapboxMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(41.354850, 2.127991))
-                        .title("Fira")
-                        .snippet("Barcelona")
-                );
+                mMapboxMap = mapboxMap;
 
                 CameraPosition position = new CameraPosition.Builder()
-                        .target(new LatLng(41.374926, 2.149667))
-                        .zoom(11)
+                        .target(new LatLng(41.40, 2.16))
+                        .zoom(10.75)
                         .build();
 
                 mapboxMap.animateCamera(CameraUpdateFactory
-                        .newCameraPosition(position), 1000);
+                        .newCameraPosition(position), 100);
             }
         });
     }
@@ -113,5 +130,74 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         mapView.onDestroy();
+    }
+
+    private void saveChargingStations(JSONArray stations) {
+        for (int i = 0; i < stations.length(); ++i) {
+            JSONObject jsonObject;
+            try {
+                jsonObject = stations.getJSONObject(i);
+
+                double longitude = jsonObject.getDouble("longitude");
+                String spotType = jsonObject.getString("spotType");
+                if (spotType.equals("moto")) {
+                    // Avoiding overlapping
+                    longitude += 0.0025;
+                }
+                chargeStations.add(new ChargeStation(
+                        jsonObject.getDouble("latitude"),
+                        longitude,
+                        jsonObject.getString("address"),
+                        jsonObject.getInt("availableSpots"),
+                        jsonObject.getInt("availableMennekeSpots"),
+                        jsonObject.getInt("availableSchukoSpots"),
+                        spotType
+                ));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        showStationsInMap();
+    }
+
+    private void showStationsInMap() {
+        Icon iconVehicle = Utils.drawableToIcon(
+                getContext(),
+                R.drawable.mapbox_marker_icon_default,
+                getResources().getColor(R.color.colorPrimary));
+        Icon iconMotorbike = Utils.drawableToIcon(
+                getContext(),
+                R.drawable.mapbox_marker_icon_default,
+                getResources().getColor(R.color.colorAccent));
+
+        for (ChargeStation chargeStation : chargeStations) {
+            Icon icon;
+            if (chargeStation.getSpotType().equals("Motorbike")) {
+                icon = iconMotorbike;
+            } else {
+                icon = iconVehicle;
+            }
+
+            mMapboxMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(chargeStation.getLatitude(), chargeStation.getLongitude()))
+                    .title(chargeStation.getSpotType() + " - " + chargeStation.getAddress())
+                    .snippet(
+                            "Spots: " + chargeStation.getAvailableSpots() + "\n" +
+                                    "Menneke Spots: " + chargeStation.getAvailableMennekeSpots() + "\n" +
+                                    "Schuko Spots: " + chargeStation.getAvailableSchukoSpots() + "\n")
+                    .icon(icon)
+            );
+        }
+    }
+
+    @Override
+    public void onAccessResponse(String response) {
+        Log.e(TAG, "Access response " + response);
+        try {
+            JSONArray jsonArray = new JSONArray(response);
+            saveChargingStations(jsonArray);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
