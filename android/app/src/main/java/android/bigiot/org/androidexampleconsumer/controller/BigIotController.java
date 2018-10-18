@@ -57,12 +57,12 @@ public class BigIotController implements IDiscoveryHandler, IResponseHandler, IS
             Random r = new Random();
             int i1 = r.nextInt(100000);
             OfferingQuery query = Consumer.createOfferingQuery("CHARGING_ID" + i1)
-                    .withCategory("urn:big-iot:ParkingSpaceCategory")
+                    .withCategory("urn:big-iot:ChargingStationCategory");
                     //.addOutputData(new RDFType("schema:longitude"), ValueType.NUMBER)
                     //.addOutputData(new RDFType("schema:latitude"), ValueType.NUMBER)
                     //.addOutputData(new RDFType("schema:geoRadius"), ValueType.NUMBER)
                     //.inRegion("Berlin")
-                    .withPricingModel(BigIotTypes.PricingModel.PER_ACCESS);
+                    //.withPricingModel(BigIotTypes.PricingModel.PER_ACCESS);
                     //.withMaxPrice(Price.Euros.amount(1.0))
                     //.withLicenseType(BigIotTypes.LicenseType.OPEN_DATA_LICENSE);
 
