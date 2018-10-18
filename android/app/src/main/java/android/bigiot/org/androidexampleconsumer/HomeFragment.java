@@ -3,6 +3,7 @@ package android.bigiot.org.androidexampleconsumer;
 import android.bigiot.org.androidexampleconsumer.Utils.Utils;
 import android.bigiot.org.androidexampleconsumer.controller.BigIotController;
 import android.bigiot.org.androidexampleconsumer.model.ChargeStation;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
+import com.mapbox.mapboxsdk.annotations.PolylineOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
@@ -81,6 +83,35 @@ public class HomeFragment extends Fragment implements BigIotController.OnAccessR
             @Override
             public void onMapReady(MapboxMap mapboxMap) {
                 mMapboxMap = mapboxMap;
+
+                mapboxMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(41.354850, 2.127991))
+                        .title("Fira")
+                        .snippet("Barcelona")
+                        .icon(Utils.drawableToIcon(
+                                getContext(),
+                                R.drawable.mapbox_marker_icon_default,
+                                getResources().getColor(R.color.colorWhite)))
+                );
+
+                mapboxMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(41.389972, 2.135095))
+                        .title("Illa Diagonal")
+                        .snippet("Barcelona")
+                        .icon(Utils.drawableToIcon(
+                                getContext(),
+                                R.drawable.mapbox_marker_icon_default,
+                                getResources().getColor(R.color.colorWhite)))
+                );
+
+                LatLng[] latLng = new LatLng[2];
+                latLng[0] = new LatLng(41.354850, 2.127991);
+                latLng[1] = new LatLng(41.389972, 2.135095);
+
+                mapboxMap.addPolyline(new PolylineOptions()
+                        .add(latLng)
+                        .color(Color.parseColor("#38afea"))
+                        .width(5));
 
                 CameraPosition position = new CameraPosition.Builder()
                         .target(new LatLng(41.40, 2.16))

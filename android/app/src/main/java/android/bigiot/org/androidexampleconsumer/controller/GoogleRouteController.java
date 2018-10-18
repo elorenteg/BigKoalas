@@ -1,6 +1,7 @@
 package android.bigiot.org.androidexampleconsumer.controller;
 
 import android.bigiot.org.androidexampleconsumer.R;
+import android.bigiot.org.androidexampleconsumer.model.RouteInfo;
 import android.content.Context;
 import android.location.Location;
 import android.util.Log;
@@ -9,7 +10,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import android.bigiot.org.androidexampleconsumer.model.RouteInfo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,10 +48,10 @@ public class GoogleRouteController {
         VolleyController.getInstance(context).addToQueue(jsonObjectRequest);
     }
 
-    private static RouteInfo parseRouteJSONArray(JSONObject microCityJSONArray) {
+    private static RouteInfo parseRouteJSONArray(JSONObject jsonObject) {
         try {
             RouteInfo routeProperties = new RouteInfo();
-            JSONArray rowsArray = microCityJSONArray.getJSONArray("rows");
+            JSONArray rowsArray = jsonObject.getJSONArray("rows");
             if (rowsArray.length() > 0) {
                 JSONArray elementsArray = rowsArray.getJSONObject(0).getJSONArray("elements");
                 if (elementsArray.length() > 0) {
