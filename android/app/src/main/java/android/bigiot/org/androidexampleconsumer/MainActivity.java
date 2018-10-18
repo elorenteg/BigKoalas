@@ -23,12 +23,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import android.bigiot.org.androidexampleconsumer.controller.GoogleRouteController;
-
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
-public class MainActivity extends AppCompatActivity implements GoogleRouteController.RouteResolvedCallback{
+public class MainActivity extends AppCompatActivity implements GoogleRouteController.RouteResolvedCallback {
 
     private GoogleRouteController.RouteResolvedCallback routeResolvedCallback;
     private Tracker mTracker;
@@ -89,10 +87,9 @@ public class MainActivity extends AppCompatActivity implements GoogleRouteContro
         destinationLocation.setLatitude(41.5);
         destinationLocation.setLongitude(2.13);
 
-        GoogleRouteController.routeRequest(this, originLocation, destinationLocation, this);
+        //GoogleRouteController.routeRequest(this, originLocation, destinationLocation, this);
 
-        /*
-        mTracker.send(new HitBuilders.EventBuilder()
+        /* mTracker.send(new HitBuilders.EventBuilder()
                 .setCategory("Action")
                 .setAction("Share")
                 .build());
