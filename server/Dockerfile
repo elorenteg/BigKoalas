@@ -1,5 +1,8 @@
 FROM java:8-jdk
 
+ARG PROVIDER_ORGANIZATION
+ARG PROVIDER_ID
+ARG PROVIDER_SECRET
 ARG PROVIDER_DNS_NAME
 ARG PROVIDER_DNS_PORT
 
@@ -17,6 +20,9 @@ WORKDIR $BASE_CONTAINER_DIR
 
 RUN chmod -R 755 gradlew
 
+RUN sed -i -e "s#PROVIDER_ORGANIZATION#$PROVIDER_ORGANIZATION#g" ./example.properties
+RUN sed -i -e "s#PROVIDER_ID#$PROVIDER_ID#g" ./example.properties
+RUN sed -i -e "s#PROVIDER_SECRET#$PROVIDER_SECRET#g" ./example.properties
 RUN sed -i -e "s#PROVIDER_DNS_NAME#$PROVIDER_DNS_NAME#g" ./example.properties
 RUN sed -i -e "s#PROVIDER_DNS_PORT#$PROVIDER_DNS_PORT#g" ./example.properties
 

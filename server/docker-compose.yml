@@ -6,7 +6,10 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        PROVIDER_DNS_NAME: localhost
+        PROVIDER_ORGANIZATION: BigKoalas
+        PROVIDER_ID: BigKoalas-ChargingStationProvider
+        PROVIDER_SECRET: 57e99rm5T7WN9zZm82bh2w==
+        PROVIDER_DNS_NAME: https://35.237.196.210/
         PROVIDER_DNS_PORT: 8080
     stdin_open: true
     tty: true
