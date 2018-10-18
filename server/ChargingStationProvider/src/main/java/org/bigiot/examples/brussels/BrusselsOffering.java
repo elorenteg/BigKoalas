@@ -23,9 +23,9 @@ public class BrusselsOffering {
                 OfferingDescription.createOfferingDescription("BrusselsChargingStations")
                         .withName("Brussels Charging Stations")
                         .withCategory("urn:big-iot:ChargingStationCategory")
-                        .addInputData("latitude", "schema:latitude", BigIotTypes.ValueType.NUMBER)
-                        .addInputData("longitude", "schema:longitude", BigIotTypes.ValueType.NUMBER)
-                        .addInputData("radius", "schema:geoRadius", BigIotTypes.ValueType.NUMBER)
+                        //.addInputData("latitude", "schema:latitude", BigIotTypes.ValueType.NUMBER)
+                        //.addInputData("longitude", "schema:longitude", BigIotTypes.ValueType.NUMBER)
+                        //.addInputData("radius", "schema:geoRadius", BigIotTypes.ValueType.NUMBER)
                         .addOutputData("latitude", "schema:latitude", BigIotTypes.ValueType.NUMBER)
                         .addOutputData("longitude", "schema:longitude", BigIotTypes.ValueType.NUMBER)
                         .addOutputData("address", "schema:streetAddress", BigIotTypes.ValueType.TEXT)
@@ -35,8 +35,8 @@ public class BrusselsOffering {
                         .addOutputData("spotType", "mobility:chargingStationConnectorType", BigIotTypes.ValueType.TEXT)
                         //.inRegion(BoundingBox.create(Location.create(42.1, 9.0), Location.create(43.2, 10.0)))
                         //.withTimePeriod(new DateTime(2017, 1, 1, 0, 0, 0), new DateTime())
-                        .withPrice(Price.Euros.amount(0.001))
-                        .withPricingModel(BigIotTypes.PricingModel.PER_ACCESS)
+                        //.withPrice(Price.Euros.amount(0.001))
+                        //.withPricingModel(BigIotTypes.PricingModel.PER_ACCESS)
                         .withLicenseType(BigIotTypes.LicenseType.OPEN_DATA_LICENSE);
 
         return this.offeringDescription;

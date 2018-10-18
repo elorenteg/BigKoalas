@@ -57,14 +57,14 @@ public class BigIotController implements IDiscoveryHandler, IResponseHandler, IS
             Random r = new Random();
             int i1 = r.nextInt(100000);
             OfferingQuery query = Consumer.createOfferingQuery("CHARGING_ID" + i1)
-                    .withCategory("urn:big-iot:ParkingSiteCategory")
-                    .addOutputData(new RDFType("schema:longitude"), ValueType.NUMBER)
+                    .withCategory("urn:big-iot:ParkingSpaceCategory")
+                    //.addOutputData(new RDFType("schema:longitude"), ValueType.NUMBER)
                     //.addOutputData(new RDFType("schema:latitude"), ValueType.NUMBER)
                     //.addOutputData(new RDFType("schema:geoRadius"), ValueType.NUMBER)
                     //.inRegion("Berlin")
-                    .withPricingModel(BigIotTypes.PricingModel.PER_ACCESS)
-                    .withMaxPrice(Price.Euros.amount(1.0))
-                    .withLicenseType(BigIotTypes.LicenseType.OPEN_DATA_LICENSE);
+                    .withPricingModel(BigIotTypes.PricingModel.PER_ACCESS);
+                    //.withMaxPrice(Price.Euros.amount(1.0))
+                    //.withLicenseType(BigIotTypes.LicenseType.OPEN_DATA_LICENSE);
 
             consumer.discoverByTask(query, this);
         } catch (IncompleteOfferingQueryException e) {
@@ -83,12 +83,19 @@ public class BigIotController implements IDiscoveryHandler, IResponseHandler, IS
 
     @Override
     public void onDiscoveryResponse(OfferingQuery query, List<OfferingDescription> offeringDescriptions) {
-        if ((offeringDescriptions != null) && !offeringDescriptions.isEmpty()) {
-            OfferingDescription selectedOfferingDescription = offeringDescriptions.get(0);
-            consumer.subscribeByTask(selectedOfferingDescription, this);
-            Toast.makeText(context, "Offering found: " + selectedOfferingDescription.getId(), Toast.LENGTH_SHORT).show();
-            Log.e(TAG, "Offering found: " + selectedOfferingDescription.getId());
-        } else {
+        boolean offeringQueryIsNotEmpty = (offeringDescriptions != null) && !offeringDescriptions.isEmpty();
+        if (offeringQueryIsNotEmpty) {
+            for (int i = 0; i < offeringDescriptions.size(); ++i) {
+                OfferingDescription selectedOfferingDescription = offeringDescriptions.get(i);
+                Log.e(TAG, selectedOfferingDescription.getId());
+                if (selectedOfferingDescription.getId().equals("Thingful-Thingful-torino_parking_total_capacity")) {
+                    consumer.subscribeByTask(selectedOfferingDescription, this);
+                    Toast.makeText(context, "Offering found: " + selectedOfferingDescription.getId(), Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Offering found: " + selectedOfferingDescription.getId());
+                }
+            }
+        }
+        else {
             Log.e(TAG, "No Offerings");
             Toast.makeText(context, "No Offerings found", Toast.LENGTH_LONG).show();
         }
