@@ -35,6 +35,8 @@ public class HomeFragment extends Fragment implements BigIotController.OnAccessR
     private MapboxMap mMapboxMap;
 
     private ArrayList<ChargeStation> chargeStations;
+    private Icon iconVehicle;
+    private Icon iconMotorbike;
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -48,6 +50,15 @@ public class HomeFragment extends Fragment implements BigIotController.OnAccessR
         setUpListeners();
 
         chargeStations = new ArrayList<>();
+
+        iconVehicle = Utils.drawableToIcon(
+                getContext(),
+                R.drawable.mapbox_marker_icon_default,
+                getResources().getColor(R.color.colorPrimary));
+        iconMotorbike = Utils.drawableToIcon(
+                getContext(),
+                R.drawable.mapbox_marker_icon_default,
+                getResources().getColor(R.color.colorAccent));
 
         Mapbox.getInstance(getActivity(), getString(R.string.access_token));
         mapView = rootView.findViewById(R.id.mapView);
@@ -161,32 +172,26 @@ public class HomeFragment extends Fragment implements BigIotController.OnAccessR
     }
 
     private void showStationsInMap() {
-        Icon iconVehicle = Utils.drawableToIcon(
-                getContext(),
-                R.drawable.mapbox_marker_icon_default,
-                getResources().getColor(R.color.colorPrimary));
-        Icon iconMotorbike = Utils.drawableToIcon(
-                getContext(),
-                R.drawable.mapbox_marker_icon_default,
-                getResources().getColor(R.color.colorAccent));
+        try {
+            for (ChargeStation chargeStation : chargeStations) {
+                Icon icon;
+                if (chargeStation.getSpotType().equals("Motorbike")) {
+                    icon = iconMotorbike;
+                } else {
+                    icon = iconVehicle;
+                }
 
-        for (ChargeStation chargeStation : chargeStations) {
-            Icon icon;
-            if (chargeStation.getSpotType().equals("Motorbike")) {
-                icon = iconMotorbike;
-            } else {
-                icon = iconVehicle;
+                mMapboxMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(chargeStation.getLatitude(), chargeStation.getLongitude()))
+                        .title(chargeStation.getSpotType() + " - " + chargeStation.getAddress())
+                        .snippet(
+                                "Spots: " + chargeStation.getAvailableSpots() + "\n" +
+                                        "Menneke Spots: " + chargeStation.getAvailableMennekeSpots() + "\n" +
+                                        "Schuko Spots: " + chargeStation.getAvailableSchukoSpots())
+                        .icon(icon)
+                );
             }
-
-            mMapboxMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(chargeStation.getLatitude(), chargeStation.getLongitude()))
-                    .title(chargeStation.getSpotType() + " - " + chargeStation.getAddress())
-                    .snippet(
-                            "Spots: " + chargeStation.getAvailableSpots() + "\n" +
-                                    "Menneke Spots: " + chargeStation.getAvailableMennekeSpots() + "\n" +
-                                    "Schuko Spots: " + chargeStation.getAvailableSchukoSpots() + "\n")
-                    .icon(icon)
-            );
+        } catch (Exception ignored) {
         }
     }
 
