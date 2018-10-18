@@ -6,10 +6,10 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        PROVIDER_ORGANIZATION: MyOrg
-        PROVIDER_ID: MyOrg-MyProvider
-        PROVIDER_SECRET: 5TmQYZgdTDWGm6W4C3TUvA==
-        PROVIDER_DNS_NAME: https://35.227.112.7/
+        PROVIDER_ORGANIZATION: BigKoalas
+        PROVIDER_ID: BigKoalas-NewChargingStationProvider
+        PROVIDER_SECRET: jS_B924KSFagXMB9M7sQhw==
+        PROVIDER_DNS_NAME: 35.227.112.7
         PROVIDER_DNS_PORT: 8080
     stdin_open: true
     tty: true
