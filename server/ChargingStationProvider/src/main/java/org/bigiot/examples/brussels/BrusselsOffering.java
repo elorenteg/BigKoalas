@@ -28,11 +28,11 @@ public class BrusselsOffering {
                         .addInputData("radius", "schema:geoRadius", BigIotTypes.ValueType.NUMBER)
                         .addOutputData("latitude", "schema:latitude", BigIotTypes.ValueType.NUMBER)
                         .addOutputData("longitude", "schema:longitude", BigIotTypes.ValueType.NUMBER)
-                        .addOutputData("freeDispenserCount", "mobility:chargingNumberOfVacantStations", BigIotTypes.ValueType.NUMBER)
-                        .addOutputData("countMenneke", "mobility:chargingNumberOfVacantStations", BigIotTypes.ValueType.NUMBER)
-                        .addOutputData("countSchuko", "mobility:chargingNumberOfVacantStations", BigIotTypes.ValueType.NUMBER)
-                        .addOutputData("placeType", "mobility:chargingStationConnectorType", BigIotTypes.ValueType.TEXT)
-                        .addOutputData("plugType", "mobility:chargingStationConnectorType", BigIotTypes.ValueType.TEXT)
+                        .addOutputData("address", "schema:streetAddress", BigIotTypes.ValueType.TEXT)
+                        .addOutputData("availableSpots", "mobility:chargingNumberOfVacantStations", BigIotTypes.ValueType.NUMBER)
+                        .addOutputData("availableMennekeSpots", "mobility:chargingNumberOfVacantStations", BigIotTypes.ValueType.NUMBER)
+                        .addOutputData("availableSchukoSpots", "mobility:chargingNumberOfVacantStations", BigIotTypes.ValueType.NUMBER)
+                        .addOutputData("spotType", "mobility:chargingStationConnectorType", BigIotTypes.ValueType.TEXT)
                         //.inRegion(BoundingBox.create(Location.create(42.1, 9.0), Location.create(43.2, 10.0)))
                         //.withTimePeriod(new DateTime(2017, 1, 1, 0, 0, 0), new DateTime())
                         .withPrice(Price.Euros.amount(0.001))
@@ -78,13 +78,13 @@ public class BrusselsOffering {
                     countSchuko = info.getProperties().getNumber();
                 }
                 JSONObject jsonObject = new JSONObject();
-                jsonObject.put("latitude", info.getGeometry().getCoordinates().get(0));
-                jsonObject.put("longitude", info.getGeometry().getCoordinates().get(1));
-                jsonObject.put("freeDispenserCount", info.getProperties().getNumber());
-                jsonObject.put("mennekeCount", countMenneke);
-                jsonObject.put("schukoCount", countSchuko);
-                jsonObject.put("placeType", "veh");
-                jsonObject.put("plugType", (hasMeneke && !hasSchuko)? "meneke" : "schuko");
+                jsonObject.put("latitude", info.getGeometry().getCoordinates().get(1));
+                jsonObject.put("longitude", info.getGeometry().getCoordinates().get(0));
+                jsonObject.put("address", info.getProperties().getRoad_fr() + ", " + info.getProperties().getHousenr());
+                jsonObject.put("availableSpots", info.getProperties().getNumber());
+                jsonObject.put("availableMennekeSpots", countMenneke);
+                jsonObject.put("availableSchukoSpots", countSchuko);
+                jsonObject.put("spotType", "veh");
 
                 ids.add(infoid);
 
