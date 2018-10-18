@@ -81,22 +81,18 @@ public class MainActivity extends AppCompatActivity implements GoogleRouteContro
         mTracker.setScreenName("Main");
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
+        // TODO: modify it
+        // ORIGIN = LA Fira
         Location originLocation = new Location("pp");
-        originLocation.setLatitude(41.1);
-        originLocation.setLongitude(2.1);
+        originLocation.setLatitude(41.3546558);
+        originLocation.setLongitude(2.1301207);
 
         Location destinationLocation = new Location("pp");
-        destinationLocation.setLatitude(41.5);
-        destinationLocation.setLongitude(2.13);
+        destinationLocation.setLatitude(41.3827);
+        destinationLocation.setLongitude(2.19435);
 
         GoogleRouteController.routeRequest(this, originLocation, destinationLocation, this);
 
-        /*
-        mTracker.send(new HitBuilders.EventBuilder()
-                .setCategory("Action")
-                .setAction("Share")
-                .build());
-                */
         mTracker.send(new HitBuilders.EventBuilder()
                 .setCategory("Destination")
                 .setAction("Access")
